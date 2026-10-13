@@ -1,0 +1,20 @@
+# Abhinandan Bandhej - Apache/Hostinger. Replace YOURDOMAIN.com. Activate SSL in hPanel first.
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.YOURDOMAIN\.com$ [NC]
+RewriteRule ^(.*)$ https://YOURDOMAIN.com/$1 [L,R=301]
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+RewriteRule ^index\.html$ / [L,R=301]
+ErrorDocument 404 /404.html
+Options -Indexes
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
